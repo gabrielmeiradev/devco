@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { UserAuthForm } from "./components/user-auth-form"
-import Logo from "./components/logo"
+import Logo from "../../components/shared/logo"
 import { motion } from "framer-motion"
 
 export default function AuthenticationPage() {
@@ -20,7 +20,7 @@ export default function AuthenticationPage() {
             backgroundSize: "cover"
           }}/>
           <div className="relative z-20">
-            <Logo />
+            <Logo width={90} />
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2 opacity-80">
