@@ -15,8 +15,8 @@ export default function UserProfileHeader({ user }: { user: IUser }) {
                     <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                    <h2 className="text-2xl font-semibold">{user.name}</h2>
-                    <h3 className="text-xl font-medium" style={{ color: profileTheme?.primaryColor }}>{user.role}</h3>
+                    <h2 className="text-xl lg:text-2xl font-semibold">{user.name}</h2>
+                    <h3 className="text-lg lg:text-xl font-medium" style={{ color: profileTheme?.primaryColor }}>{user.role}</h3>
                 </div>
             </div>
             <div className="flex flex-wrap justify-center mt-6 gap-2">
