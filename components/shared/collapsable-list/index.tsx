@@ -9,6 +9,7 @@ interface ICollapsableListProps {
     collapseText?: string;
     className?: string;
     animationDuration?: number;
+    gap?: number;
 }
 
 export function CollapsableList({
@@ -17,6 +18,7 @@ export function CollapsableList({
     expandText = "ver todos",
     collapseText = "ver menos",
     className = "",
+    gap = 2,
     animationDuration = 0.3
 }: ICollapsableListProps) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -30,7 +32,7 @@ export function CollapsableList({
     };
 
     return (
-        <div className={`flex flex-col gap-2 ${className}`}>
+        <div className={`flex flex-col gap-${gap} ${className}`}>
             {displayedChildren.map((child, index) => (
                 <motion.div
                     key={index}

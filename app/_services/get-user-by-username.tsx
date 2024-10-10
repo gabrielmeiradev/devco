@@ -55,7 +55,7 @@ export default function getUserByUsername(username: string): { user: IUser | und
                     id: "1",
                     title: "The two types of quality",
                     content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, voluptas. Totam ad temporibus assumenda cumque eaque qui atque, doloribus facere?",
-                    readTime: 8 * 60 
+                    readTime: 30 
                 },
                 {
                     id: "1",
