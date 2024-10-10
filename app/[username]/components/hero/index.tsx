@@ -25,7 +25,8 @@ export default function Hero({ menuItems, user }: { menuItems: IMenuItem[], user
         <div 
             className="
                 relative 
-                pb-[25vh] 
+                pb-[16vh] 
+                lg:pb-[24vh] 
                 bg-cover 
             "
             style={{ backgroundImage: `url(${user.theme.backgroundImage})` }}
