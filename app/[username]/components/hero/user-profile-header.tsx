@@ -19,7 +19,7 @@ export default function UserProfileHeader({ user }: { user: IUser }) {
                     <h3 className="text-lg lg:text-xl font-medium" style={{ color: profileTheme?.primaryColor }}>{user.role}</h3>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center mt-6 gap-2">
+            <div className="flex flex-wrap justify-center lg:mt-6 mt-7 gap-2">
                 {user.links.map((link, index) => (
                     <ProfileLink label={link.title} key={index} to={link.link} icon={getLinkIcon(link.type)} textColor={profileTheme.primaryColor} />
                 ))}
