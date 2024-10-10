@@ -8,7 +8,7 @@ export default function getUserByUsername(username: string): { user: IUser | und
         user = {
             username: "gabrielmeiradev",
             name: "Gabriel Meira",
-            role: "Full Stack Softwadaaare Engineer",
+            role: "Desenvolvedor Full Stack",
             avatarSrc: "https://github.com/gabrielmeiradev.png",
             theme: {
                 backgroundImage: "/images/background/temp-bg.png",
