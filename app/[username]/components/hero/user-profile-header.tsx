@@ -9,12 +9,12 @@ export default function UserProfileHeader({ user }: { user: IUser }) {
 
     return (
         <div className="flex flex-col items-center mt-16">
-            <div className="flex gap-5 items-center w-full justify-center">
+            <div className="flex lg:flex-row flex-col gap-5 items-center w-full justify-center">
                 <Avatar className="size-20">
                     <AvatarImage src={user.avatarSrc} alt={user.name} />
                     <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
                 </Avatar>
-                <div className="flex flex-col">
+                <div className="flex flex-col text-center lg:text-left">
                     <h2 className="text-xl lg:text-2xl font-semibold">{user.name}</h2>
                     <h3 className="text-lg lg:text-xl font-medium" style={{ color: profileTheme?.primaryColor }}>{user.role}</h3>
                 </div>
