@@ -16,6 +16,8 @@ import Articles from "./components/articles/";
 import Projects from "./components/projects/";
 import Experiences from "./components/experiences";
 import getUserByUsername from "../_services/get-user-by-username";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const App = () => {
     const { username } = useParams();
@@ -79,13 +81,32 @@ const Details = React.memo(({ user, sections }: { user: IUser, sections: IProfil
         <Bio bio={user.bio} />
         {sections.map((section, index) => 
             section.component && (
-                <Section key={index} name={section.title} id={section.link.substring(1)}>
-                    {section.component}
-                </Section>
+                <AnimatedSection key={index} section={section} index={index} />
             )
         )}
     </div>
 ));
+
+const AnimatedSection = ({ section, index }: { section: IProfileSection, index: number }) => {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.1,
+    });
+
+    return (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.2 * index }}
+            className="w-full"
+        >
+            <Section name={section.title} id={section.link.substring(1)}>
+                {section.component}
+            </Section>
+        </motion.div>
+    );
+};
 
 Details.displayName = 'Details';
 
