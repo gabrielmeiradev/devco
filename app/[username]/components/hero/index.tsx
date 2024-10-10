@@ -13,8 +13,7 @@ function HeroEffect() {
                 bg-gradient-to-b 
                 from-transparent 
                 to-background 
-                backdrop-contrast-100 
-                backdrop-brightness-[0.7]
+                backdrop-brightness-[0.5]
             "
         />
     );
@@ -27,6 +26,7 @@ export default function Hero({ menuItems, user }: { menuItems: IMenuItem[], user
                 relative
                 pb-[24vh] 
                 bg-cover 
+                bg-center
             "
             style={{ backgroundImage: `url(${user.theme.backgroundImage})` }}
         >

@@ -11,7 +11,7 @@ export default function getUserByUsername(username: string): { user: IUser | und
             role: "Desenvolvedor Full Stack",
             avatarSrc: "https://github.com/gabrielmeiradev.png",
             theme: {
-                backgroundImage: "/images/background/temp-bg.png",
+                backgroundImage: "/images/background/gif.gif",
                 primaryColor: "#CB4381"
             },
             links: [
