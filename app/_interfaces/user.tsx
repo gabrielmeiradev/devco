@@ -18,3 +18,7 @@ export default interface IUser {
     projects: IProject[],
     articles: IArticle[],
 }
+
+export interface IUserInApp extends IUser {
+    isAdmin: boolean;
+}   

@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { useParams } from 'next/navigation'
 import { UserProvider, useUser } from "../_providers/user";
 import { hexToHSL } from "../_utils/color-converter";
-import IUser from "../_interfaces/user";
+import IUser, { IUserInApp } from "../_interfaces/user";
 import { IProfileSection } from "../_interfaces/profile-section";
 
 // Components
@@ -18,6 +18,7 @@ import Experiences from "./components/experiences";
 import getUserByUsername from "../_services/get-user-by-username";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import EditProfileButton from "./components/admin/edit-profile-button";
 
 const App = () => {
     const { username } = useParams();
@@ -39,13 +40,20 @@ const UserNotFound = () => (
 );
 
 const ProfilePage = () => {
-    const user = useUser();
-    const { profileSections, menuItems } = useProfileSections(user);
+    const u = useUser();
+    // se usuario logado é o mesmo que o usuario da pagina, renderiza os widgets no modo de edicao
+    const { profileSections, menuItems } = useProfileSections(u);
+
+    const isAdmin = u.username === "gabrielmeiradev";
+
+    // passando o status de admin para o corpo do usuario
+    const user = { ...u, isAdmin };
 
     return (
-        <div className="w-full">
+        <div className="w-full" >
             <Hero menuItems={menuItems} user={user} />
             <Details user={user} sections={profileSections} />
+            {isAdmin && <EditProfileButton className="fixed bottom-4 right-4" user={user} />}
         </div>
     );
 };
@@ -53,10 +61,12 @@ const ProfilePage = () => {
 const useProfileSections = (user: IUser) => {
     return useMemo(() => {
         const sectionConfigs = [
+            { key: "skills", title: "Habilidades", component: user.skills.length > 0 ? 
+                <Skills skills={user.skills} /> : null },
             { key: "experience", title: "Experiência", component: user.experiences.length > 0 ? <Experiences experiences={user.experiences} /> : null },
             { key: "projects", title: "Projetos", component: user.projects.length > 0 ? <Projects projects={user.projects} /> : null },
             { key: "articles", title: "Artigos", component: user.articles.length > 0 ? <Articles articles={user.articles} /> : null },
-            { key: "skills", title: "Habilidades", component: user.skills.length > 0 ? <Skills skills={user.skills} theme={user.theme} /> : null }
+            
         ];
 
         const profileSections = sectionConfigs
@@ -73,7 +83,7 @@ const useProfileSections = (user: IUser) => {
     }, [user]);
 };
 
-const Details = React.memo(({ user, sections }: { user: IUser, sections: IProfileSection[] }) => (
+const Details = React.memo(({ user, sections }: { user: IUserInApp, sections: IProfileSection[] }) => (
     <div 
         style={{ "--primary": hexToHSL(user.theme.primaryColor!) } as React.CSSProperties} 
         className="px-6 py-10 flex flex-col items-center justify-center gap-10 -mt-24 z-30 relative max-w-3xl mx-auto"

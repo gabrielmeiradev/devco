@@ -1,7 +1,7 @@
 import IMenuItem from "@/app/_interfaces/menu-item";
 import ProfileMenu from "../menu";
 import UserProfileHeader from "./user-profile-header";
-import IUser from "@/app/_interfaces/user";
+import { IUserInApp } from "@/app/_interfaces/user";
 
 function HeroEffect() {
     return (
@@ -18,7 +18,7 @@ function HeroEffect() {
         />
     );
 }
-export default function Hero({ menuItems, user }: { menuItems: IMenuItem[], user: IUser }) {
+export default function Hero({ menuItems, user }: { menuItems: IMenuItem[], user: IUserInApp }) {
 
     return (
         <div 

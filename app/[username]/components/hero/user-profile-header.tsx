@@ -1,10 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ProfileLink from "../profile-link";
-import IUser from "@/app/_interfaces/user";
+import { IUserInApp } from "@/app/_interfaces/user";
 import getLinkIcon from "@/app/_utils/get-link-icon";
 
 
-export default function UserProfileHeader({ user }: { user: IUser }) {
+export default function UserProfileHeader({ user }: { user: IUserInApp }) {
     const profileTheme = user.theme;
 
     return (
