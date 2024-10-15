@@ -73,7 +73,7 @@ export default function EditProfileButton({ className, user }: { className?: str
            <PencilIcon className="w-4 h-4 mr-2" /> Editar perfil
         </Button>
       </DialogTrigger>
-      <DialogContent className="overflow-y-auto max-h-screen max-w-screen md:max-h-[80vh] md:max-w-[50vw] z-[1000]">
+      <DialogContent className="overflow-y-auto max-h-[80vh] max-w-[90vw] p-10 md:max-h-[80vh] md:max-w-[50vw] z-[1000]">
         <DialogHeader>
           <DialogTitle>Editar perfil</DialogTitle>
           <DialogDescription>
