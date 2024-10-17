@@ -1,8 +1,12 @@
 import IUser from "../_interfaces/user";
+import getThemeById from "./get-theme-by-id";
 
 export default function getUserByUsername(username: string): { user: IUser | undefined }   {
     // TODO: make this service get theme by username at the server
     let user: IUser | undefined;
+
+    const userThemeId = "1";
+    const theme = getThemeById(userThemeId);
 
     if(username == "gabrielmeiradev") {
         user = {
@@ -10,15 +14,12 @@ export default function getUserByUsername(username: string): { user: IUser | und
             name: "Gabriel Meira",
             role: "Desenvolvedor Full Stack",
             avatarSrc: "https://github.com/gabrielmeiradev.png",
-            theme: {
-                backgroundImage: "/images/background/gif.gif",
-                primaryColor: "#CB4381"
-            },
+            theme: theme,
             links: [
                 {
                     type: "link",
                     title: "Portfólio",
-                    link: "https://gabrielmeiradev.com"
+                    link: "https://gabrielmeiradev.github.io"
                 },
                 {
                     type: "linkedin",
@@ -93,23 +94,18 @@ export default function getUserByUsername(username: string): { user: IUser | und
             skills: [
                 {
                     name: "Pix",
-                    howLong: 30 * 14 + 10
                 },
                 {
                     name: "Vue",
-                    howLong: 30 * 4
                 },
                 {
                     name: "Angular",
-                    howLong: 30 * 1
                 },
                 {
                     name: "Node.js",
-                    howLong: 30 * 3
                 },
                 {
                     name: "Typescript",
-                    howLong: 30 * 3
                 },
                 
             ]

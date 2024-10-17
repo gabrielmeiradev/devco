@@ -5,7 +5,7 @@ export default function getThemeById(id: string): ITheme {
     console.log(id);
 
     const theme: ITheme = {
-        backgroundImage: "/images/background/temp-bg.png",
+        backgroundImage: "/images/background/gif.gif",
         primaryColor: "#CB4381"
     };
     return theme;

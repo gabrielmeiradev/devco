@@ -15,7 +15,6 @@ import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { IUserInApp } from "@/app/_interfaces/user"
 import { useForm, Controller, useFieldArray } from "react-hook-form"
-import getLinkIcon from "@/app/_utils/get-link-icon"
 
 export default function EditProfileButton({ className, user }: { className?: string, user: IUserInApp }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -70,12 +69,12 @@ export default function EditProfileButton({ className, user }: { className?: str
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" className={`${className} z-[999]`}>
-           <PencilIcon className="w-4 h-4 mr-2" /> Editar perfil
+           <PencilIcon className="w-4 h-4 mr-2" /> Editar informações básicas
         </Button>
       </DialogTrigger>
       <DialogContent className="overflow-y-auto max-h-[80vh] max-w-[90vw] p-10 md:max-h-[80vh] md:max-w-[50vw] z-[1000]">
         <DialogHeader>
-          <DialogTitle>Editar perfil</DialogTitle>
+          <DialogTitle>Informações básicas</DialogTitle>
           <DialogDescription>
             Faça alterações no seu perfil aqui. Clique em salvar quando terminar.
           </DialogDescription>
@@ -138,10 +137,7 @@ export default function EditProfileButton({ className, user }: { className?: str
                   name={`links.${index}.type`}
                   control={control}
                   render={({ field }) => (
-                    <div className="flex items-center">
-                      {getLinkIcon(field.value) && React.createElement(getLinkIcon(field.value) || 'div')}
-                      <Input {...field} placeholder="Tipo" className="hidden" />
-                    </div>
+                    <Input {...field} placeholder="Tipo" className="hidden" />
                   )}
                 />
                 <Button type="button" variant="destructive" onClick={() => removeLink(index)}>

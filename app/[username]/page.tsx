@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { useParams } from 'next/navigation'
 import { UserProvider, useUser } from "../_providers/user";
 import { hexToHSL } from "../_utils/color-converter";
-import IUser, { IUserInApp } from "../_interfaces/user";
+import { IUserInApp } from "../_interfaces/user";
 import { IProfileSection } from "../_interfaces/profile-section";
 
 // Components
@@ -19,6 +19,7 @@ import getUserByUsername from "../_services/get-user-by-username";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import EditProfileButton from "./components/admin/edit-profile-button";
+import { isAdmin } from "../_services/check-user-is-admin";
 
 const App = () => {
     const { username } = useParams();
@@ -41,31 +42,30 @@ const UserNotFound = () => (
 
 const ProfilePage = () => {
     const u = useUser();
-    // se usuario logado é o mesmo que o usuario da pagina, renderiza os widgets no modo de edicao
-    const { profileSections, menuItems } = useProfileSections(u);
 
-    const isAdmin = u.username === "gabrielmeiradev";
 
     // passando o status de admin para o corpo do usuario
-    const user = { ...u, isAdmin };
+    const user = { ...u, isAdmin: isAdmin(u) };
+
+    const { profileSections, menuItems } = useProfileSections(user);
 
     return (
         <div className="w-full" >
             <Hero menuItems={menuItems} user={user} />
             <Details user={user} sections={profileSections} />
-            {isAdmin && <EditProfileButton className="fixed bottom-4 right-4" user={user} />}
+            {user.isAdmin && <EditProfileButton className="fixed bottom-4 right-4" user={user} />}
         </div>
     );
 };
 
-const useProfileSections = (user: IUser) => {
+const useProfileSections = (user: IUserInApp) => {
     return useMemo(() => {
         const sectionConfigs = [
             { key: "skills", title: "Habilidades", component: user.skills.length > 0 ? 
                 <Skills skills={user.skills} /> : null },
-            { key: "experience", title: "Experiência", component: user.experiences.length > 0 ? <Experiences experiences={user.experiences} /> : null },
-            { key: "projects", title: "Projetos", component: user.projects.length > 0 ? <Projects projects={user.projects} /> : null },
-            { key: "articles", title: "Artigos", component: user.articles.length > 0 ? <Articles articles={user.articles} /> : null },
+            { key: "experience", title: "Experiência", component: user.experiences.length > 0 ? <Experiences experiences={user.experiences} canAdd={user.isAdmin} /> : null },
+            { key: "projects", title: "Projetos", component: user.projects.length > 0 ? <Projects projects={user.projects} canAdd={user.isAdmin} /> : null },
+            { key: "articles", title: "Artigos", component: user.articles.length > 0 ? <Articles articles={user.articles} canAdd={user.isAdmin} /> : null },
             
         ];
 
