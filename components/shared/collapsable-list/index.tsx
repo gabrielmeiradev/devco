@@ -51,6 +51,7 @@ export function CollapsableList({
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
+                        className={`flex flex-col gap-${gap}`}
                         transition={{ duration: animationDuration }}
                     >
                         {hiddenChildren.map((child, index) => (
