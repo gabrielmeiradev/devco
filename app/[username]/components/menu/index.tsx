@@ -1,5 +1,5 @@
-import Logo from "@/components/shared/logo";
-import NavMenu from "@/components/shared/nav-menu";
+import Logo from "@/components/logo";
+import NavMenu from "@/components/nav-menu";
 import IMenuItem from "@/app/_interfaces/menu-item";
 import { Badge } from "@/components/ui/badge";
 

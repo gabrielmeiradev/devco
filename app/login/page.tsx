@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { UserAuthForm } from "./components/user-auth-form"
-import Logo from "../../components/shared/logo"
+import Logo from "../../components/logo"
 import { motion } from "framer-motion"
 
 export default function AuthenticationPage() {
@@ -18,7 +18,7 @@ export default function AuthenticationPage() {
           <div className="absolute inset-0 bg-black opacity-35" style={{
             backgroundImage: "url('/images/background/login-screen-anime-bg.jpg')",
             backgroundSize: "cover"
-          }}/>
+          }} />
           <div className="relative z-20">
             <Logo width={90} />
           </div>
@@ -31,7 +31,7 @@ export default function AuthenticationPage() {
             </blockquote>
           </div>
         </motion.div>
-        
+
         <motion.div
           className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px] px-10"
           initial={{ opacity: 0, y: 50 }}

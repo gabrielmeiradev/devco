@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useMemo } from "react";
+import React from "react";
 import { useParams } from 'next/navigation'
 import { UserProvider, useUser } from "../_providers/user";
 import { hexToHSL } from "../_utils/color-converter";
@@ -11,15 +11,12 @@ import { IProfileSection } from "../_interfaces/profile-section";
 import Hero from "./components/hero/";
 import Bio from "./components/bio/";
 import Section from "./components/section";
-import Skills from "./components/skills/";
-import Articles from "./components/articles/";
-import Projects from "./components/projects/";
-import Experiences from "./components/experiences";
 import getUserByUsername from "../_services/get-user-by-username";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import EditProfileButton from "./components/admin/edit-profile-button";
 import { isAdmin } from "../_services/check-user-is-admin";
+import useProfileSections from "../_shared/hooks/use-profile-sections";
 
 const App = () => {
     const { username } = useParams();
@@ -58,38 +55,13 @@ const ProfilePage = () => {
     );
 };
 
-const useProfileSections = (user: IUserInApp) => {
-    return useMemo(() => {
-        const sectionConfigs = [
-            { key: "skills", title: "Habilidades", component: user.skills.length > 0 ? 
-                <Skills skills={user.skills} /> : null },
-            { key: "experience", title: "Experiência", component: user.experiences.length > 0 ? <Experiences experiences={user.experiences} canAdd={user.isAdmin} /> : null },
-            { key: "projects", title: "Projetos", component: user.projects.length > 0 ? <Projects projects={user.projects} canAdd={user.isAdmin} /> : null },
-            { key: "articles", title: "Artigos", component: user.articles.length > 0 ? <Articles articles={user.articles} canAdd={user.isAdmin} /> : null },
-            
-        ];
-
-        const profileSections = sectionConfigs
-            .filter(config => config.component)
-            .map(({ key, title, component }) => ({
-                title,
-                link: `#${key}`,
-                component,
-            }));
-
-        const menuItems = profileSections.map(({ title, link }) => ({ title, link }));
-
-        return { profileSections, menuItems };
-    }, [user]);
-};
-
 const Details = React.memo(({ user, sections }: { user: IUserInApp, sections: IProfileSection[] }) => (
-    <div 
-        style={{ "--primary": hexToHSL(user.theme.primaryColor!) } as React.CSSProperties} 
+    <div
+        style={{ "--primary": hexToHSL(user.theme.primaryColor!) } as React.CSSProperties}
         className="px-6 py-10 flex flex-col items-center justify-center gap-10 -mt-24 z-30 relative max-w-3xl mx-auto"
-    >   
+    >
         <Bio bio={user.bio} />
-        {sections.map((section, index) => 
+        {sections.map((section, index) =>
             section.component && (
                 <AnimatedSection key={index} section={section} index={index} />
             )

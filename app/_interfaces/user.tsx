@@ -1,4 +1,4 @@
-import IArticle from "./article";
+import IArticleInUser from "./article-in-user";
 import IExperience from "./experience";
 import ILink from "./link";
 import IProject from "./project";
@@ -7,7 +7,7 @@ import ITheme from "./theme";
 
 export default interface IUser {
     username: string,
-    name: string, 
+    name: string,
     role: string,
     avatarSrc: string,
     links: ILink[],
@@ -16,7 +16,7 @@ export default interface IUser {
     skills: ISkill[],
     experiences: IExperience[],
     projects: IProject[],
-    articles: IArticle[],
+    articles: IArticleInUser[],
 }
 
 export interface IUserInApp extends IUser {

@@ -1,6 +1,5 @@
 export default interface IArticle {
-    id: string,
-    title: string,
+    username: string,
     content: string,
-    readTime: number, // in seconds
+    date: Date
 }
