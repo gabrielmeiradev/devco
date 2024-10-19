@@ -1,3 +1,5 @@
+"use client"
+
 import getArticleById from "@/app/_services/get-article-by-id";
 import { redirect, useParams } from "next/navigation";
 

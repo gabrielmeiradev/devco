@@ -1,12 +1,12 @@
 import Link from "next/link";
 import IArticleInUser from "@/app/_interfaces/article-in-user";
 
-export default function ArticleCard({ article }: { article: IArticleInUser }) {
+export default function ArticleCard({ article, username }: { article: IArticleInUser, username: string }) {
     return (
 
         <div className="flex flex-col gap-1">
             <div className="flex gap-2 lg:items-center lg:flex-row flex-col items-start">
-                <Link href={`/articles/${article.id}`}>
+                <Link href={`${username}/article/${article.id}`}>
                     <h2 className="text-lg font-semibold text-base hover:underline-offset-4 hover:underline decoration-wavy hover:decoration-primary hover:text-primary">{article.title}</h2>
                 </Link>
 

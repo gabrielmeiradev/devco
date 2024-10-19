@@ -1,4 +1,4 @@
-import Articles from "@/app/[username]/components/articles";
+import Articles from "@/app/[username]/components/article";
 import Experiences from "@/app/[username]/components/experiences";
 import Projects from "@/app/[username]/components/projects";
 import Skills from "@/app/[username]/components/skills";
@@ -14,7 +14,7 @@ const useProfileSections = (user: IUserInApp) => {
             },
             { key: "experience", title: "Experiência", component: user.experiences.length > 0 ? <Experiences experiences={user.experiences} canAdd={user.isAdmin} /> : null },
             { key: "projects", title: "Projetos", component: user.projects.length > 0 ? <Projects projects={user.projects} canAdd={user.isAdmin} /> : null },
-            { key: "articles", title: "Artigos", component: user.articles.length > 0 ? <Articles articles={user.articles} canAdd={user.isAdmin} /> : null },
+            { key: "articles", title: "Artigos", component: user.articles.length > 0 ? <Articles articles={user.articles} username={user.username} canAdd={user.isAdmin} /> : null },
 
         ];
 
