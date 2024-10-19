@@ -2,6 +2,6 @@ import React from "react";
 
 export interface IProfileSection {
     title: string;
-    link: string;
+    id: string;
     component: React.ReactNode;
 }

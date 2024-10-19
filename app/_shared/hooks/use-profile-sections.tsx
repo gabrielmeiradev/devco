@@ -22,11 +22,12 @@ const useProfileSections = (user: IUserInApp) => {
             .filter(config => config.component)
             .map(({ key, title, component }) => ({
                 title,
-                link: `#${key}`,
+                id: key,
+                link: `/${user.username}#${key}`,
                 component,
             }));
 
-        const menuItems = profileSections.map(({ title, link }) => ({ title, link }));
+        const menuItems = profileSections.map(({ title, link, id }) => ({ title, link, id }));
 
         return { profileSections, menuItems };
     }, [user]);

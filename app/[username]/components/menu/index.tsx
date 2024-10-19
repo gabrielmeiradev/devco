@@ -2,6 +2,7 @@ import Logo from "@/components/logo";
 import NavMenu from "@/components/nav-menu";
 import IMenuItem from "@/app/_interfaces/menu-item";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function ProfileMenu({ username, items }: { username: string, items: IMenuItem[] }) {
     return (
@@ -10,9 +11,11 @@ export default function ProfileMenu({ username, items }: { username: string, ite
                 <div className="flex justify-between container mx-auto">
                     <div className="flex gap-2 items-center justify-center">
                         <Logo width={80} />
-                        <Badge variant={"outline"} className="text-sm">
-                            @{username}
-                        </Badge>
+                        <Link href={`/${username}`}>
+                            <Badge variant={"outline"} className="text-sm">
+                                @{username}
+                            </Badge>
+                        </Link>
                     </div>
                     <NavMenu items={items} />
                 </div>

@@ -15,8 +15,9 @@ import getUserByUsername from "../_services/get-user-by-username";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import EditProfileButton from "./components/admin/edit-profile-button";
-import { isAdmin } from "../_services/check-user-is-admin";
+import { getUserInApp } from "../_services/get-user-in-app";
 import useProfileSections from "../_shared/hooks/use-profile-sections";
+import Wrapper from "@/components/wrapper";
 
 const App = () => {
     const { username } = useParams();
@@ -40,33 +41,35 @@ const UserNotFound = () => (
 const ProfilePage = () => {
     const u = useUser();
 
-
     // passando o status de admin para o corpo do usuario
-    const user = { ...u, isAdmin: isAdmin(u) };
+    const userInApp = getUserInApp(u);
 
-    const { profileSections, menuItems } = useProfileSections(user);
+    const { profileSections, menuItems } = useProfileSections(userInApp);
 
     return (
         <div className="w-full" >
-            <Hero menuItems={menuItems} user={user} />
-            <Details user={user} sections={profileSections} />
-            {user.isAdmin && <EditProfileButton className="fixed bottom-4 right-4" user={user} />}
+            <Hero menuItems={menuItems} user={userInApp} />
+            <Details user={userInApp} sections={profileSections} />
+            {userInApp.isAdmin && <EditProfileButton className="fixed bottom-4 right-4" user={userInApp} />}
         </div>
     );
 };
 
 const Details = React.memo(({ user, sections }: { user: IUserInApp, sections: IProfileSection[] }) => (
-    <div
-        style={{ "--primary": hexToHSL(user.theme.primaryColor!) } as React.CSSProperties}
-        className="px-6 py-10 flex flex-col items-center justify-center gap-10 -mt-24 z-30 relative max-w-3xl mx-auto"
-    >
-        <Bio bio={user.bio} />
-        {sections.map((section, index) =>
-            section.component && (
-                <AnimatedSection key={index} section={section} index={index} />
-            )
-        )}
-    </div>
+    <Wrapper>
+        <div
+            style={{ "--primary": hexToHSL(user.theme.primaryColor!) } as React.CSSProperties}
+            className="flex flex-col items-center justify-center gap-10 -mt-24 z-30 relative"
+        >
+            <Bio bio={user.bio} />
+            {sections.map((section, index) =>
+                section.component && (
+                    <AnimatedSection key={index} section={section} index={index} />
+                )
+            )}
+            
+        </div>
+    </Wrapper>
 ));
 
 const AnimatedSection = ({ section, index }: { section: IProfileSection, index: number }) => {
@@ -83,7 +86,7 @@ const AnimatedSection = ({ section, index }: { section: IProfileSection, index: 
             transition={{ duration: 0.5, delay: 0.2 * index }}
             className="w-full"
         >
-            <Section name={section.title} id={section.link.substring(1)}>
+            <Section name={section.title} id={section.id}>
                 {section.component}
             </Section>
         </motion.div>
