@@ -10,7 +10,7 @@ import getDateFormatted from "@/app/_utils/get-date-formatted";
 import Link from "next/link";
 import { hexToHSL } from "@/app/_utils/color-converter";
 import Wrapper from "@/components/wrapper";
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown"
 
 export default function ArticlePage() {
     const { slug } = useParams();
@@ -19,11 +19,12 @@ export default function ArticlePage() {
     const article = getArticleById(slug)
     const { user } = getUserByUsername(article.username);
 
-    if(!user || user == undefined) return redirect("../");
+    if (!user || user == undefined) return redirect("../");
     const userInApp = getUserInApp(user);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { menuItems } = useProfileSections(userInApp);
 
-    let markdown_temp = `Os gatos são criaturas fascinantes que conquistaram o coração de milhões de pessoas ao redor do mundo. Minha paixão por eles vai além de sua aparência encantadora; é uma combinação de suas personalidades únicas, comportamentos intrigantes e o carinho que eles oferecem. Aqui estão algumas razões pelas quais eu amo gatos.
+    const markdown_temp = `Os gatos são criaturas fascinantes que conquistaram o coração de milhões de pessoas ao redor do mundo. Minha paixão por eles vai além de sua aparência encantadora; é uma combinação de suas personalidades únicas, comportamentos intrigantes e o carinho que eles oferecem. Aqui estão algumas razões pelas quais eu amo gatos.
 
 ![Cute Cat](https://gallerypng.com/wp-content/uploads/2024/03/cat-png-cute-cat-free-hd-download-transparent-png-45943-936x1024.png)
 
@@ -59,10 +60,10 @@ Amo gatos por uma infinidade de razões que vão desde sua independência até o
         <>
             <ProfileMenu items={menuItems} username={userInApp.username} />
             <Wrapper>
-                <div 
-                    style={{ "--primary": hexToHSL(user.theme.primaryColor!) } as React.CSSProperties }
+                <div
+                    style={{ "--primary": hexToHSL(user.theme.primaryColor!) } as React.CSSProperties}
                 >
-                    
+
                     <div className="text-center">
                         <h1 className="text-3xl font-extrabold">{article.title}</h1>
                         <p className="text-gray-400">Por <Link href={`/${user.username}`} className={`py-2 border-b-2 border-dashed hover:text-primary hover:border-primary-foreground transition`}>{user.username}</Link> em {getDateFormatted(article.date, "dd/mm/yy")}</p>
