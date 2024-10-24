@@ -29,7 +29,7 @@ export default function AddArticleButton({ className }: { className: string }) {
                         <DialogTitle>Escrevendo novo artigo</DialogTitle>
                     </DialogHeader>
                     <form onSubmit={handleSubmit} className="flex-grow flex flex-col p-6">
-                        <div className="space-y-4 flex-grow">
+                        <div className="space-y-4 flex-grow pb-3">
                             <div>
                                 <Input id="title" placeholder="Título" required />
                             </div>
