@@ -88,7 +88,7 @@ export default function getUserByUsername(username: string): { user: IUser | und
                     id: "1",
                     title: "Project 1",
                     coverImgSrc: "/images/300.png",
-                    description: "Uma descricao de um projeto"
+                    link: "#"
                 }
             ],
             skills: [

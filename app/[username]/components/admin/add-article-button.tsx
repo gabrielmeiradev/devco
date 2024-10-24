@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { SquarePen } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import React from "react";
+import MarkdownEditor from "@/app/_shared/components/md-editor";
+
 
 export default function AddArticleButton({ className }: { className: string }) {
     const [open, setOpen] = useState(false);
-
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Lógica para adicionar o artigo
@@ -32,7 +33,7 @@ export default function AddArticleButton({ className }: { className: string }) {
                             <div>
                                 <Input id="title" placeholder="Título" required />
                             </div>
-                            <Textarea id="content" placeholder="Conteúdo" required className="flex-grow h-[80%] mb-4" />
+                            <MarkdownEditor className={"flex flex-grow mb-6 gap-4"} />
                         </div>
                         <Button type="submit">Adicionar Artigo</Button>
                     </form>

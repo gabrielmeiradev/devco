@@ -36,7 +36,7 @@ export default function ArticlePage() {
 
                     <div className="text-center">
                         <h1 className="text-3xl font-extrabold">{article.title}</h1>
-                        <p className="text-gray-400">Por <Link href={`/${user.username}`} className={`py-2 border-b-2 border-dashed hover:text-primary hover:border-primary-foreground transition`}>{user.username}</Link> em {getDateFormatted(article.date, "dd/mm/yy")}</p>
+                        <p className="text-gray-400 mt-4">Por <Link href={`/${user.username}`} className={`py-2 border-b-2 border-dashed hover:text-primary hover:border-primary-foreground transition`}>{user.username}</Link> em {getDateFormatted(article.date, "dd/mm/yy")}</p>
                     </div>
                     <div className="mt-12 prose-sm dark:prose-invert">
                         {<ReactMarkdown>{article.content}</ReactMarkdown>}

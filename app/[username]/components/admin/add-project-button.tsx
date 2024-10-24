@@ -4,7 +4,6 @@ import { PlusIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 
 export default function AddProjectButton({ className }: { className: string }) {
     const [open, setOpen] = useState(false);
@@ -32,10 +31,6 @@ export default function AddProjectButton({ className }: { className: string }) {
                         <div>
                             <Label htmlFor="title">Título</Label>
                             <Input id="title" required />
-                        </div>
-                        <div>
-                            <Label htmlFor="description">Descrição</Label>
-                            <Textarea id="description" />
                         </div>
                         <div>
                             <Label htmlFor="imageUrl">URL da Imagem</Label>
